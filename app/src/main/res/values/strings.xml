@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Opendagen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="PREF_USER_ID">PREF_USER_ID</string>
+    <string name="PREF_SCANNING">PREF_SCANNING</string>
+    <string name="PROMOTIONSSEEN">PROMOTIONSSEEN</string>
+    <string name="CURVIEWID">CURVIEWID</string>
+    <string name="CURPROMOTIONURI">CURPROMOTIONURI</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
