@@ -162,9 +162,11 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        //else if (curViewId == R.id.nav_promotions_seen) {
-        //    displayView();
-        //}
+        /*
+        else if (curViewId == R.id.nav_promotions_seen) {
+            displayView();
+        }
+        */
         else if (curViewId != R.id.nav_home) {
                 displayView(R.id.nav_home);
         }
