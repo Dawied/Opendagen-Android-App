@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,6 +50,10 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getView().findViewById(R.id.spEducation),  {"A", "B", "C"});
+        spinnerArrayAdapter.setDropDownViewResource(getView().findViewById(R.id.spEducation));
+        R.id.spEduction(spinnerArrayAdapter);
+
         boolean registered = !((MainActivity) getActivity()).userId.isEmpty();
         ConstraintLayout registerLayout = (ConstraintLayout) getView().findViewById(R.id.clRegister);
         ConstraintLayout registerDoneLayout = (ConstraintLayout) getView().findViewById(R.id.clRegisterDone);
@@ -77,6 +82,7 @@ public class HomeFragment extends Fragment {
     public void onSendClick(View view) {
         String email = ((EditText) getView().findViewById(R.id.etEmail)).getText().toString();
         String name = ((EditText) getView().findViewById(R.id.etName)).getText().toString();
+        String phone = ((EditText) getView().findViewById(R.id.etPhone)).getText().toString();
 
         if (email.isEmpty() || name.isEmpty())
         {
@@ -110,7 +116,7 @@ public class HomeFragment extends Fragment {
             jsonBody.put("name", name);
             jsonBody.put("email", email);
             jsonBody.put("education", "vmbo4");
-            jsonBody.put("phone_number", "0653298109");
+            jsonBody.put("phone_number", phone);
 
             final String mRequestBody = jsonBody.toString();
 
