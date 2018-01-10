@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity
                 fragment.setArguments(bundle);
                 title  = "Live";
                 showFab(false);
+
                 break;
             case R.id.nav_home:
                 fragment = new HomeFragment();

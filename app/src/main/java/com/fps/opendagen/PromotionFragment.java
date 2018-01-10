@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -38,7 +39,12 @@ public class PromotionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView tvInfo = (TextView) getView().findViewById(R.id.tvPromotionId);
-        WebView wvPromotion = (WebView) getView().findViewById(R.id.wvPromotion);
+
+        WebView wvPromotion = (WebView)getView().findViewById(R.id.wvPromotion);
+        WebSettings webSettings = wvPromotion.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+
 
         if (!promotionUri.isEmpty()) {
             wvPromotion.setVisibility(View.VISIBLE);
