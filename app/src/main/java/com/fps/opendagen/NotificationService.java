@@ -73,6 +73,9 @@ public class NotificationService extends Service
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
+        // Stop uri van de promotion in de extra's vd intent
+        intent.putExtra(getString(R.string.CURPROMOTIONURI), promotion.uri);
+
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle(promotion.title);
         builder.setContentText(promotion.message);
