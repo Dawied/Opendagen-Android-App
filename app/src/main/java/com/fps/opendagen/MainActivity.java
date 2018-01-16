@@ -93,20 +93,8 @@ public class MainActivity extends AppCompatActivity
         // Controleer permissions en start hierna de lightcurb SDK
         checkPermissionAndInitLightcurbSDK();
 
-        // Als de app via een notification is gestart zit de uri van de promotion
-        String promotionUri = "";
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            promotionUri = extras.getString(getString(R.string.CURPROMOTIONURI));
-        }
-
-        if (!promotionUri.isEmpty()) {
-            displayStaticPromotion(promotionUri);
-        } else {
-            // Toon het home scherm
-            displayView(R.id.nav_home);
-        }
+        // Toon het home scherm
+        displayView(R.id.nav_home);
     }
 
     // Toon de gekozen view in een fragment
@@ -380,15 +368,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(String uri) {
-        displayStaticPromotion(uri);
 
-        // set the toolbar title
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Bezocht");
-        }
-    }
-
-    private void displayStaticPromotion(String uri) {
         StaticPromotionFragment fragment = new StaticPromotionFragment();
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.CURPROMOTIONURI), uri);
@@ -399,6 +379,10 @@ public class MainActivity extends AppCompatActivity
         //ft.addToBackStack(null);
         ft.commit();
 
+        // set the toolbar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Bezocht");
+        }
     }
 
     private void showFab(boolean show) {
