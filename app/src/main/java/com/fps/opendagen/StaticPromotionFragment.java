@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.fps.opendagen.R;
@@ -39,6 +40,9 @@ public class StaticPromotionFragment extends Fragment {
 
         WebView wvStaticPromotion = (WebView) getView().findViewById(R.id.wvStaticPromotion);
         wvStaticPromotion.loadUrl(promotionUri);
+
+        WebSettings webSettings = wvStaticPromotion.getSettings();
+        webSettings.setJavaScriptEnabled(true);
     }
 
 }
