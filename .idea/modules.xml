@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Opendagen.iml" filepath="$PROJECT_DIR$/Opendagen.iml" />
       <module fileurl="file://C:\Users\jeroe\AndroidStudioProjects\Opendagen-Android-App-master\Opendagen.iml" filepath="C:\Users\jeroe\AndroidStudioProjects\Opendagen-Android-App-master\Opendagen.iml" />
+      <module fileurl="file://C:\Users\jeroe\AndroidStudioProjects\Opendagen-Android-App\Opendagen.iml" filepath="C:\Users\jeroe\AndroidStudioProjects\Opendagen-Android-App\Opendagen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Opendagen-Android-App.iml" filepath="$PROJECT_DIR$/Opendagen-Android-App.iml" />
       <module fileurl="file://D:\Project\School\Opendagen\AndroidApp\Opendagen\Opendagen-Android-App-master.iml" filepath="D:\Project\School\Opendagen\AndroidApp\Opendagen\Opendagen-Android-App-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

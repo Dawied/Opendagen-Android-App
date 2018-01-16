@@ -11,6 +11,22 @@
     <string name="CURVIEWID">CURVIEWID</string>
     <string name="CURPROMOTIONURI">CURPROMOTIONURI</string>
 
+
+    <string-array name="education_value_array">
+
+        <item>VMBO/MAVO 3</item>
+        <item>VMBO/MAVO 4</item>
+        <item>HAVO</item>
+        <item>Anders</item>
+    </string-array>
+
+    <string-array name="education_key_array">
+        <item>vmbo3</item>
+        <item>vmbo4</item>
+        <item>havo</item>
+        <item>other</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
