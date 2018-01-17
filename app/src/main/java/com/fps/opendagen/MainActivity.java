@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -26,11 +27,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.lightcurb.sdk.Constants;
 import com.lightcurb.sdk.LightcurbSDK;
 import com.lightcurb.sdk.model.Beacon;
 import com.lightcurb.sdk.model.Promotion;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -50,6 +59,8 @@ public class MainActivity extends AppCompatActivity
     private TextView fabText;
     private LightcurbSDK lightcurbSDK;
     private static final String LOGTAG = "OpendagenApp";
+
+    final private int STATIC_PROMOTION_VIEW_ID = 80;
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
@@ -163,11 +174,9 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        /*
-        else if (curViewId == R.id.nav_promotions_seen) {
-            displayView();
+        else if (curViewId == STATIC_PROMOTION_VIEW_ID) {
+            displayView(R.id.nav_promotions_seen);
         }
-        */
         else if (curViewId != R.id.nav_home) {
                 displayView(R.id.nav_home);
         }
@@ -179,23 +188,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -304,6 +298,8 @@ public class MainActivity extends AppCompatActivity
                     String strPromotionsSeen = Util.promotionMapToJsonString(promotionsSeen);
                     editor.putString(getString(R.string.PROMOTIONSSEEN), strPromotionsSeen);
                     editor.commit();
+
+                    registerPromotion(promotion.name);
                 }
 
                 // Als we de promotions view zelf staan
@@ -314,6 +310,35 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
+
+    private void registerPromotion(String promotionName) {
+        try
+        {
+            String url = "https://opendagen.frisovdpoort.nl/api/openday/" + this.userId + "/action";
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("name", promotionName);
+
+            final String mRequestBody = jsonBody.toString();
+
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    });
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(jsObjRequest);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onResume()
@@ -378,6 +403,8 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.content_frame, fragment);
         //ft.addToBackStack(null);
         ft.commit();
+
+        curViewId = STATIC_PROMOTION_VIEW_ID;
 
         // set the toolbar title
         if (getSupportActionBar() != null) {
